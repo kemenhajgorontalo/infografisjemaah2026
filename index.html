@@ -1,0 +1,1445 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kantor Kementerian Haji dan Umrah Gorontalo</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <style>
+    :root {
+      --ink: #24170f;
+      --muted: #715b48;
+      --paper: #fffaf0;
+      --panel: rgba(255, 252, 244, .88);
+      --line: rgba(92, 58, 25, .18);
+      --gold: #d6a944;
+      --gold-2: #f1d58b;
+      --brown: #6d3f1f;
+      --brown-2: #a46a2b;
+      --green: #256d4a;
+      --cream: #fff5d8;
+      --shadow: 0 18px 50px rgba(62, 36, 15, .16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(246, 221, 153, .62), transparent 32rem),
+        linear-gradient(135deg, #3c2112 0%, #87511f 38%, #c99839 72%, #f2da91 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, transparent 0 35%, rgba(255,255,255,.16) 45%, transparent 56%),
+        radial-gradient(circle at 72% 16%, rgba(255, 240, 184, .28), transparent 17rem);
+      mix-blend-mode: soft-light;
+      animation: sheen 11s ease-in-out infinite alternate;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1420px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 22px 0 34px;
+    }
+
+    .hero {
+      min-height: clamp(360px, 44vh, 520px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
+      gap: 28px;
+      align-items: center;
+      padding: 30px 0 22px;
+      animation: fadeUp .75s ease both;
+    }
+
+    .brand {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .logo-mark {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.86);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 14px 34px rgba(28, 17, 8, .22);
+      border: 1px solid rgba(255,255,255,.8);
+      flex: 0 0 auto;
+      transition: transform .28s ease, box-shadow .28s ease;
+      animation: softPulse 4.8s ease-in-out infinite;
+    }
+
+    [data-tip] {
+      position: relative;
+    }
+
+    [data-tip]::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 10px);
+      transform: translate(-50%, 8px) scale(.98);
+      min-width: 190px;
+      max-width: min(320px, calc(100vw - 28px));
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(45, 26, 12, .96);
+      color: #fff8e7;
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 680;
+      text-align: left;
+      box-shadow: 0 14px 32px rgba(28, 17, 8, .28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index: 40;
+      white-space: normal;
+    }
+
+    [data-tip]::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 4px);
+      width: 12px;
+      height: 12px;
+      transform: translate(-50%, 8px) rotate(45deg);
+      background: rgba(45, 26, 12, .96);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index: 39;
+    }
+
+    [data-tip]:hover::after,
+    [data-tip]:focus-visible::after,
+    [data-tip]:hover::before,
+    [data-tip]:focus-visible::before {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+
+    [data-tip]:hover::before,
+    [data-tip]:focus-visible::before {
+      transform: translate(-50%, 0) rotate(45deg);
+    }
+
+    .brand:hover .logo-mark {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 18px 42px rgba(28, 17, 8, .28);
+    }
+
+    .logo-mark img {
+      width: 66px;
+      height: 66px;
+      object-fit: contain;
+    }
+
+    .eyebrow {
+      color: #fff1c8;
+      font-weight: 750;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      margin: 0 0 6px;
+    }
+
+    h1 {
+      color: #fffaf0;
+      font-size: clamp(34px, 6vw, 78px);
+      line-height: .98;
+      margin: 0;
+      text-wrap: balance;
+      text-shadow: 0 12px 42px rgba(0,0,0,.24);
+      animation: titleReveal .72s ease .08s both;
+    }
+
+    .hero-copy {
+      max-width: 820px;
+      color: #fff7df;
+      font-size: clamp(16px, 2vw, 22px);
+      line-height: 1.45;
+      margin: 22px 0 0;
+      animation: fadeUp .75s ease .16s both;
+    }
+
+    .hero-panel {
+      background: linear-gradient(180deg, rgba(255, 250, 234, .94), rgba(255, 242, 198, .88));
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+      animation: fadeUp .75s ease .22s both;
+    }
+
+    .hero-panel:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 60px rgba(62, 36, 15, .22);
+      border-color: rgba(255,255,255,.95);
+    }
+
+    .hero-panel h2 {
+      font-size: 18px;
+      margin: 0 0 14px;
+    }
+
+    .split-stat {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .mini-stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: rgba(255,255,255,.42);
+      transition: transform .22s ease, background .22s ease, border-color .22s ease;
+    }
+
+    .mini-stat:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.68);
+      border-color: rgba(164,106,43,.32);
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1;
+      color: var(--brown);
+    }
+
+    .mini-stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .section {
+      background: rgba(255, 250, 240, .86);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-top: 18px;
+      backdrop-filter: blur(12px);
+      animation: fadeUp .65s ease both;
+      transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+    }
+
+    .section:hover {
+      box-shadow: 0 22px 56px rgba(62, 36, 15, .2);
+      border-color: rgba(255,255,255,.72);
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) repeat(4, minmax(150px, 190px)) auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .field label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      margin: 0 0 6px;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: #fffdf7;
+      padding: 0 12px;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+
+    .field input:focus, .field select:focus {
+      border-color: rgba(164,106,43,.7);
+      box-shadow: 0 0 0 3px rgba(214,169,68,.18);
+      transform: translateY(-1px);
+    }
+
+    .btn {
+      height: 42px;
+      border: 0;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--brown), var(--brown-2) 52%, var(--gold));
+      color: white;
+      font-weight: 800;
+      padding: 0 14px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(109, 63, 31, .2);
+      white-space: nowrap;
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(109, 63, 31, .28);
+      filter: saturate(1.08);
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(.99);
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .kpis {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .countdown-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .countdown-card {
+      background:
+        linear-gradient(145deg, rgba(255, 252, 244, .95), rgba(247, 226, 166, .84)),
+        radial-gradient(circle at top right, rgba(214,169,68,.25), transparent 14rem);
+      border: 1px solid rgba(255,255,255,.66);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+    }
+
+    .countdown-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 54px rgba(62, 36, 15, .22);
+      border-color: rgba(255,255,255,.9);
+    }
+
+    .countdown-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0 40%, rgba(255,255,255,.34) 50%, transparent 60%);
+      transform: translateX(-120%);
+      transition: transform .7s ease;
+      pointer-events: none;
+    }
+
+    .countdown-card:hover::after {
+      transform: translateX(120%);
+    }
+
+    .countdown-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .countdown-head h3 {
+      margin: 0;
+      font-size: 21px;
+      color: var(--brown);
+    }
+
+    .countdown-head span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      text-align: right;
+    }
+
+    .countdown-units {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .time-box {
+      min-height: 82px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.58);
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .time-box:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.8);
+      border-color: rgba(164,106,43,.32);
+    }
+
+    .time-box strong {
+      display: block;
+      font-size: clamp(25px, 4vw, 42px);
+      line-height: 1;
+      color: #4a2a15;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .time-box span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 780;
+      text-transform: uppercase;
+    }
+
+    .countdown-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .countdown-status {
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .kpi {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 118px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease, background .24s ease;
+    }
+
+    .kpi::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0 42%, rgba(255,255,255,.5) 50%, transparent 58%);
+      transform: translateX(-120%);
+      transition: transform .6s ease;
+    }
+
+    .kpi:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 38px rgba(109, 63, 31, .14);
+      border-color: rgba(164,106,43,.34);
+      background: rgba(255, 253, 247, .96);
+    }
+
+    .kpi:hover::before {
+      transform: translateX(120%);
+    }
+
+    .kpi span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .kpi strong {
+      display: block;
+      margin-top: 10px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1;
+      color: var(--brown);
+    }
+
+    .kpi em {
+      display: block;
+      margin-top: 10px;
+      color: var(--green);
+      font-style: normal;
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .charts {
+      grid-template-columns: 1.1fr .9fr;
+      align-items: start;
+    }
+
+    .chart-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      min-width: 0;
+      transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+    }
+
+    .chart-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 42px rgba(109, 63, 31, .14);
+      border-color: rgba(164,106,43,.3);
+    }
+
+    .chart-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+
+    .chart-head h3 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .chart-head span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .bars {
+      display: grid;
+      gap: 10px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: minmax(124px, 178px) minmax(100px, 1fr) 54px;
+      gap: 10px;
+      align-items: center;
+      transition: transform .2s ease;
+    }
+
+    .bar-row[data-tip]::after {
+      left: auto;
+      right: 0;
+      transform: translateY(8px) scale(.98);
+    }
+
+    .bar-row[data-tip]::before {
+      left: auto;
+      right: 22px;
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .bar-row[data-tip]:hover::after,
+    .bar-row[data-tip]:focus-visible::after {
+      transform: translateY(0) scale(1);
+    }
+
+    .bar-row[data-tip]:hover::before,
+    .bar-row[data-tip]:focus-visible::before {
+      transform: translateY(0) rotate(45deg);
+    }
+
+    .bar-row:hover {
+      transform: translateX(4px);
+    }
+
+    .bar-label {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+
+    .bar-track {
+      height: 18px;
+      background: rgba(109, 63, 31, .1);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(109, 63, 31, .08);
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0;
+      border-radius: 8px;
+      background: linear-gradient(90deg, var(--brown), var(--gold));
+      transition: width .35s ease;
+    }
+
+    .bar-fill[data-color] {
+      background: linear-gradient(90deg, color-mix(in srgb, var(--bar-color) 82%, #1f130a), var(--bar-color));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
+    }
+
+    .bar-row:hover .bar-fill {
+      background: linear-gradient(90deg, #4f2d18, var(--brown-2), var(--gold-2));
+      filter: saturate(1.12);
+    }
+
+    .bar-row:hover .bar-fill[data-color] {
+      background: linear-gradient(90deg, color-mix(in srgb, var(--bar-color) 72%, #1f130a), color-mix(in srgb, var(--bar-color) 84%, #ffffff));
+    }
+
+    .bar-value {
+      color: var(--brown);
+      font-weight: 830;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    .donut-wrap {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .donut {
+      width: 220px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold) 0 50%, var(--brown) 50% 100%);
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(109,63,31,.12);
+      transition: transform .35s ease, filter .35s ease;
+      animation: rotateIn .8s ease both;
+    }
+
+    .donut:hover {
+      transform: rotate(4deg) scale(1.035);
+      filter: saturate(1.08);
+    }
+
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 48px;
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: inset 0 0 0 1px rgba(109,63,31,.12);
+    }
+
+    .legend {
+      display: grid;
+      gap: 10px;
+    }
+
+    .rombongan-legend {
+      grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .legend-item {
+      display: grid;
+      grid-template-columns: 14px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 720;
+      transition: transform .2s ease, color .2s ease;
+    }
+
+    .legend-item:hover {
+      transform: translateX(3px);
+      color: var(--ink);
+    }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: var(--gold);
+    }
+
+    .swatch.dark { background: var(--brown); }
+    .swatch.green { background: var(--green); }
+    .swatch.mid { background: var(--brown-2); }
+
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffdf7;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.45);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(92,58,25,.12);
+      text-align: left;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(180deg, #fff6dc, #f7e7b6);
+      color: #442712;
+      z-index: 1;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    tbody tr:hover {
+      background: rgba(214,169,68,.1);
+      transform: scale(1.002);
+    }
+
+    tbody tr {
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    tbody tr[data-tip]::after {
+      position: fixed;
+      left: auto;
+      right: 22px;
+      bottom: 22px;
+      transform: translateY(8px) scale(.98);
+    }
+
+    tbody tr[data-tip]::before {
+      display: none;
+    }
+
+    tbody tr[data-tip]:hover::after {
+      transform: translateY(0) scale(1);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 3px 9px;
+      background: rgba(214,169,68,.18);
+      color: #5a3519;
+      font-weight: 760;
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .rombongan-pill {
+      min-width: 34px;
+      justify-content: center;
+      color: var(--rom-text, #24170f);
+      background: var(--rom-bg, rgba(214,169,68,.18));
+      border: 1px solid var(--rom-border, rgba(92,58,25,.12));
+    }
+
+    tr:hover .pill {
+      transform: translateY(-1px);
+      background: rgba(214,169,68,.28);
+    }
+
+    tr:hover .rombongan-pill {
+      background: color-mix(in srgb, var(--rom-bg) 86%, #ffffff);
+    }
+
+    .table-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .note {
+      color: rgba(255,250,240,.86);
+      font-size: 12px;
+      margin: 14px 2px 0;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .58s ease, transform .58s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes titleReveal {
+      from { opacity: 0; transform: translateY(14px); filter: blur(4px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    @keyframes softPulse {
+      0%, 100% { box-shadow: 0 14px 34px rgba(28, 17, 8, .22); }
+      50% { box-shadow: 0 16px 42px rgba(214, 169, 68, .32); }
+    }
+
+    @keyframes rotateIn {
+      from { opacity: 0; transform: rotate(-12deg) scale(.92); }
+      to { opacity: 1; transform: rotate(0) scale(1); }
+    }
+
+    @keyframes sheen {
+      from { transform: translateX(-3%); opacity: .55; }
+      to { transform: translateX(3%); opacity: .9; }
+    }
+
+    @media (max-width: 1100px) {
+      .hero, .charts, .donut-wrap { grid-template-columns: 1fr; }
+      .toolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .kpis, .countdown-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .btn { width: 100%; }
+      .hero {
+        min-height: auto;
+      }
+      .hero-panel {
+        max-width: 720px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 20px, 1420px); padding-top: 12px; }
+      .hero { gap: 18px; padding-top: 16px; }
+      .brand { align-items: flex-start; gap: 12px; }
+      .logo-mark { width: 64px; height: 64px; }
+      .logo-mark img { width: 50px; height: 50px; }
+      .toolbar, .kpis, .countdown-grid, .split-stat { grid-template-columns: 1fr; }
+      .section { padding: 12px; }
+      .bar-row { grid-template-columns: minmax(92px, 128px) 1fr 44px; }
+      .donut { width: min(220px, 72vw); }
+      h1 { font-size: clamp(31px, 11vw, 46px); }
+      .hero-copy { font-size: 15px; }
+      .chart-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+      }
+      th, td {
+        padding: 9px 10px;
+        font-size: 12px;
+      }
+      .table-foot {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .bar-label {
+        font-size: 12px;
+      }
+      .kpi {
+        min-height: 104px;
+      }
+      .countdown-units {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .countdown-head,
+      .countdown-note {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .countdown-head span {
+        text-align: left;
+      }
+      [data-tip]::after {
+        left: 0;
+        right: auto;
+        transform: translateY(8px) scale(.98);
+        min-width: min(260px, calc(100vw - 28px));
+      }
+      [data-tip]::before {
+        left: 18px;
+        transform: translateY(8px) rotate(45deg);
+      }
+      [data-tip]:hover::after,
+      [data-tip]:focus-visible::after {
+        transform: translateY(0) scale(1);
+      }
+      [data-tip]:hover::before,
+      [data-tip]:focus-visible::before {
+        transform: translateY(0) rotate(45deg);
+      }
+    }
+
+    @media (max-width: 420px) {
+      .shell { width: min(100% - 14px, 1420px); }
+      .brand {
+        flex-direction: column;
+      }
+      .logo-mark {
+        width: 58px;
+        height: 58px;
+      }
+      .logo-mark img {
+        width: 46px;
+        height: 46px;
+      }
+      .bar-row {
+        grid-template-columns: 1fr 44px;
+        gap: 6px 8px;
+      }
+      .bar-label {
+        grid-column: 1 / -1;
+      }
+      .donut {
+        justify-self: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <div class="brand">
+          <div class="logo-mark">
+            <img src="logo-kh.png" alt="Logo Kementerian Haji dan Umrah">
+          </div>
+          <div>
+            <p class="eyebrow">Infografik Pra Manifest Haji Reguler 1447 H / 2026 M</p>
+            <h1>Kantor Kementerian Haji dan Umrah Gorontalo</h1>
+          </div>
+        </div>
+        <p class="hero-copy">Halaman infografis ini menyajikan ringkasan, distribusi, komposisi rombongan, status, umur, dan daftar data terfilter untuk jemaah serta petugas asal Provinsi Gorontalo pada Kloter 28 dan Kloter 30 UPG.</p>
+      </div>
+      <aside class="hero-panel">
+        <h2>Ringkasan Provinsi Gorontalo</h2>
+        <div class="split-stat">
+          <div class="mini-stat" data-tip="Jumlah data yang sedang tampil setelah filter diterapkan."><strong id="heroTotal">0</strong><span>Total terfilter</span></div>
+          <div class="mini-stat" data-tip="Jumlah kabupaten/kota asal di Provinsi Gorontalo yang masuk hasil filter."><strong id="heroKab">0</strong><span>Kab/Kota asal</span></div>
+          <div class="mini-stat" data-tip="Jumlah data asal Provinsi Gorontalo pada Kloter 28 UPG."><strong id="heroK28">0</strong><span>Kloter 28 UPG</span></div>
+          <div class="mini-stat" data-tip="Jumlah data asal Provinsi Gorontalo pada Kloter 30 UPG."><strong id="heroK30">0</strong><span>Kloter 30 UPG</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="toolbar">
+        <div class="field" data-tip="Cari berdasarkan nama atau nomor porsi. Data paspor tidak ditampilkan.">
+          <label for="search">Cari nama atau nomor porsi</label>
+          <input id="search" type="search" placeholder="Contoh: IWAN WOLUWO">
+        </div>
+        <div class="field" data-tip="Saring data berdasarkan Kloter 28 atau Kloter 30 UPG.">
+          <label for="kloterFilter">Kloter</label>
+          <select id="kloterFilter"><option value="">Semua kloter</option></select>
+        </div>
+        <div class="field" data-tip="Tampilkan data dari kabupaten/kota tertentu di Provinsi Gorontalo.">
+          <label for="kabFilter">Kab/Kota</label>
+          <select id="kabFilter"><option value="">Semua kab/kota</option></select>
+        </div>
+        <div class="field" data-tip="Saring berdasarkan status jemaah atau petugas dalam manifest.">
+          <label for="statusFilter">Status</label>
+          <select id="statusFilter"><option value="">Semua status</option></select>
+        </div>
+        <div class="field" data-tip="Saring berdasarkan jenis kelamin.">
+          <label for="genderFilter">Jenis kelamin</label>
+          <select id="genderFilter">
+            <option value="">Semua</option>
+            <option value="L">Laki-laki</option>
+            <option value="P">Perempuan</option>
+          </select>
+        </div>
+        <button class="btn" id="resetBtn" data-tip="Kembalikan semua filter ke tampilan awal.">Reset</button>
+      </div>
+    </section>
+
+    <section class="section grid countdown-grid" data-tip="Countdown dihitung berdasarkan jadwal masuk Asrama Haji Gorontalo pada PDF Jadual Keberangkatan Haji 2026 fix-1. Zona waktu memakai WITA.">
+      <div class="countdown-card" data-countdown="28" data-tip="Kloter 28 masuk Asrama Haji Gorontalo pada 09 Mei 2026 pukul 21.00 WITA.">
+        <div class="countdown-head">
+          <div>
+            <p class="eyebrow" style="color:#8a552c;margin-bottom:5px">Masuk Asrama Haji Gorontalo</p>
+            <h3>Kloter 28 UPG</h3>
+          </div>
+          <span>09 Mei 2026<br>21.00 WITA</span>
+        </div>
+        <div class="countdown-units">
+          <div class="time-box"><strong data-unit="days">0</strong><span>Hari</span></div>
+          <div class="time-box"><strong data-unit="hours">0</strong><span>Jam</span></div>
+          <div class="time-box"><strong data-unit="minutes">0</strong><span>Menit</span></div>
+          <div class="time-box"><strong data-unit="seconds">0</strong><span>Detik</span></div>
+        </div>
+        <div class="countdown-note">
+          <span>Jumlah data Gorontalo: <strong id="countK28">0</strong></span>
+          <span class="countdown-status" data-status>Menunggu jadwal</span>
+        </div>
+      </div>
+
+      <div class="countdown-card" data-countdown="30" data-tip="Kloter 30 masuk Asrama Haji Gorontalo pada 11 Mei 2026 pukul 09.00 WITA.">
+        <div class="countdown-head">
+          <div>
+            <p class="eyebrow" style="color:#8a552c;margin-bottom:5px">Masuk Asrama Haji Gorontalo</p>
+            <h3>Kloter 30 UPG</h3>
+          </div>
+          <span>11 Mei 2026<br>09.00 WITA</span>
+        </div>
+        <div class="countdown-units">
+          <div class="time-box"><strong data-unit="days">0</strong><span>Hari</span></div>
+          <div class="time-box"><strong data-unit="hours">0</strong><span>Jam</span></div>
+          <div class="time-box"><strong data-unit="minutes">0</strong><span>Menit</span></div>
+          <div class="time-box"><strong data-unit="seconds">0</strong><span>Detik</span></div>
+        </div>
+        <div class="countdown-note">
+          <span>Jumlah data Gorontalo: <strong id="countK30">0</strong></span>
+          <span class="countdown-status" data-status>Menunggu jadwal</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid kpis">
+      <div class="kpi" data-tip="Total jemaah dan petugas asal Provinsi Gorontalo sesuai filter aktif."><span>Total data</span><strong id="kpiTotal">0</strong><em id="kpiTotalSub">Provinsi Gorontalo</em></div>
+      <div class="kpi" data-tip="Jumlah data dengan jenis kelamin P pada hasil filter."><span>Perempuan</span><strong id="kpiFemale">0</strong><em id="kpiFemaleSub">0%</em></div>
+      <div class="kpi" data-tip="Jumlah data dengan jenis kelamin L pada hasil filter."><span>Laki-laki</span><strong id="kpiMale">0</strong><em id="kpiMaleSub">0%</em></div>
+      <div class="kpi" data-tip="Rata-rata umur dari data yang sedang tampil."><span>Rata-rata umur</span><strong id="kpiAge">0</strong><em id="kpiAgeSub">Rentang umur</em></div>
+      <div class="kpi" data-tip="Jumlah data berumur 65 tahun atau lebih."><span>Lansia 65+</span><strong id="kpiSenior">0</strong><em id="kpiSeniorSub">0%</em></div>
+    </section>
+
+    <section class="section grid charts">
+      <div class="chart-card">
+        <div class="chart-head" data-tip="Arahkan pointer ke setiap batang untuk melihat jumlah dan persentase wilayah.">
+          <h3>Distribusi Kab/Kota</h3>
+          <span id="kabCountLabel">0 wilayah</span>
+        </div>
+        <div class="bars" id="kabBars"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head" data-tip="Donut memperlihatkan proporsi data Kloter 28 dan Kloter 30.">
+          <h3>Komposisi Kloter</h3>
+          <span>UPG 28 dan UPG 30</span>
+        </div>
+        <div class="donut-wrap">
+          <div class="donut" id="kloterDonut" aria-label="Komposisi kloter"></div>
+          <div class="legend" id="kloterLegend"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid charts">
+      <div class="chart-card">
+        <div class="chart-head" data-tip="Status mencakup jemaah, KARU, KAROM, dan petugas pendukung yang ada di pramanifest.">
+          <h3>Status Jemaah/Petugas</h3>
+          <span id="statusCountLabel">0 kategori</span>
+        </div>
+        <div class="bars" id="statusBars"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head" data-tip="Kelompok umur dihitung dari kolom Umur pada data terfilter.">
+          <h3>Kelompok Umur</h3>
+          <span>Tahun</span>
+        </div>
+        <div class="bars" id="ageBars"></div>
+      </div>
+    </section>
+
+    <section class="section grid charts">
+      <div class="chart-card">
+        <div class="chart-head" data-tip="Distribusi jumlah data per rombongan pada hasil filter.">
+          <h3>Rombongan</h3>
+          <span id="rombonganCountLabel">0 rombongan</span>
+        </div>
+        <div class="bars" id="rombonganBars"></div>
+        <div class="legend rombongan-legend" id="rombonganLegend"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head" data-tip="Menampilkan 10 regu dengan jumlah anggota terbesar dalam hasil filter.">
+          <h3>Regu Terbesar</h3>
+          <span>10 teratas</span>
+        </div>
+        <div class="bars" id="reguBars"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="chart-head">
+        <h3>Daftar Data Terfilter</h3>
+        <button class="btn" id="exportBtn" data-tip="Unduh hasil filter tanpa kolom nomor paspor.">Ekspor CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Urut</th>
+              <th>No. Porsi</th>
+              <th>Nama</th>
+              <th>Kloter</th>
+              <th>Romb.</th>
+              <th>Regu</th>
+              <th>Umur</th>
+              <th>Status</th>
+              <th>Kab/Kota</th>
+              <th>JK</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <div class="table-foot">
+        <span id="tableInfo">0 data</span>
+        <span>Ditampilkan maksimal 160 baris pertama dari hasil filter.</span>
+      </div>
+    </section>
+
+    <p class="note">Sumber data: Pra Manifest Kloter 28 dan Kloter 30 UPG tanggal 21 April, serta Jadual Keberangkatan Haji 2026 fix-1 untuk countdown masuk Asrama Haji. Infografis ini hanya menampilkan data asal kabupaten/kota di Provinsi Gorontalo dan tidak menampilkan nomor paspor untuk menjaga privasi.</p>
+  </main>
+
+  <script>
+    const CSV_FILES = [
+      "Praman28%2021%20April%20-%20Sheet1.csv",
+      "Praman30%2021%20April%20-%20Sheet1.csv"
+    ];
+
+    const GORONTALO_AREAS = new Set([
+      "KOTA GORONTALO",
+      "KAB. GORONTALO",
+      "KAB. BONE BOLANGO",
+      "KAB. POHUWATO",
+      "KAB. BOALEMO",
+      "KAB. GORONTALO UTARA"
+    ]);
+
+    const state = { all: [], filtered: [] };
+    const el = id => document.getElementById(id);
+    const fmt = n => new Intl.NumberFormat("id-ID").format(Math.round(n || 0));
+    const pct = (n, d) => d ? `${Math.round((n / d) * 100)}%` : "0%";
+    const COUNTDOWN_TARGETS = {
+      "28": new Date("2026-05-09T21:00:00+08:00"),
+      "30": new Date("2026-05-11T09:00:00+08:00")
+    };
+    const ROMBONGAN_COLORS = {
+      "1": { name: "Merah", bg: "#d93636", text: "#ffffff", border: "#a32121" },
+      "2": { name: "Kuning", bg: "#f4cf38", text: "#24170f", border: "#c39b12" },
+      "3": { name: "Biru", bg: "#2d73d9", text: "#ffffff", border: "#1c4f9d" },
+      "4": { name: "Coklat", bg: "#8a552c", text: "#ffffff", border: "#5f371c" },
+      "5": { name: "Hijau", bg: "#2f8f55", text: "#ffffff", border: "#20663b" },
+      "6": { name: "Putih", bg: "#fffdf6", text: "#24170f", border: "#c9bfa6" },
+      "7": { name: "Orange", bg: "#f28a2e", text: "#24170f", border: "#bf6415" },
+      "8": { name: "Ungu", bg: "#7b4cc2", text: "#ffffff", border: "#57328e" },
+      "9": { name: "Hitam", bg: "#1f1a17", text: "#ffffff", border: "#000000" },
+      "10": { name: "Merah Muda", bg: "#f39aba", text: "#24170f", border: "#cf6d91" }
+    };
+
+    function rombonganStyle(value) {
+      const color = ROMBONGAN_COLORS[String(value)] || { bg: "#d6a944", text: "#24170f", border: "#a46a2b", name: "Standar" };
+      return `--rom-bg:${color.bg};--rom-text:${color.text};--rom-border:${color.border};`;
+    }
+
+    function parseCsv(text) {
+      const rows = [];
+      let row = [], cell = "", quote = false;
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i], next = text[i + 1];
+        if (ch === '"' && quote && next === '"') { cell += '"'; i++; continue; }
+        if (ch === '"') { quote = !quote; continue; }
+        if (ch === "," && !quote) { row.push(cell); cell = ""; continue; }
+        if ((ch === "\n" || ch === "\r") && !quote) {
+          if (ch === "\r" && next === "\n") i++;
+          row.push(cell);
+          if (row.some(v => v.trim() !== "")) rows.push(row);
+          row = []; cell = "";
+          continue;
+        }
+        cell += ch;
+      }
+      if (cell || row.length) { row.push(cell); rows.push(row); }
+      const header = rows.shift().map(h => h.trim());
+      return rows.map(values => Object.fromEntries(header.map((h, i) => [h, (values[i] || "").trim()])));
+    }
+
+    function countBy(rows, key) {
+      const map = new Map();
+      rows.forEach(r => map.set(r[key], (map.get(r[key]) || 0) + 1));
+      return [...map.entries()].filter(([k]) => k && k !== "-").sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    }
+
+    function fillSelect(id, values) {
+      const select = el(id);
+      const first = select.options[0].outerHTML;
+      select.innerHTML = first + values.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("");
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+    }
+
+    function applyFilters() {
+      const q = el("search").value.trim().toUpperCase();
+      const kloter = el("kloterFilter").value;
+      const kab = el("kabFilter").value;
+      const status = el("statusFilter").value;
+      const gender = el("genderFilter").value;
+      state.filtered = state.all.filter(r => {
+        const hay = `${r["Nama"]} ${r["No. Porsi"]}`.toUpperCase();
+        return (!q || hay.includes(q)) &&
+          (!kloter || r["Kloter"] === kloter) &&
+          (!kab || r["Kab/Kota"] === kab) &&
+          (!status || r["Status Jemaah"] === status) &&
+          (!gender || r["J. Kelamin"] === gender);
+      });
+      render();
+    }
+
+    function renderBars(targetId, data, options = {}) {
+      const max = Math.max(1, ...data.map(([, v]) => v));
+      const limit = options.limit || data.length;
+      const total = data.reduce((sum, [, value]) => sum + value, 0);
+      el(targetId).innerHTML = data.slice(0, limit).map(([label, value]) => {
+        const color = options.colorByRombongan ? ROMBONGAN_COLORS[String(label)] : null;
+        const displayLabel = options.colorByRombongan ? `Rombongan ${label}` : label;
+        const tipLabel = color ? `${displayLabel} (${color.name})` : displayLabel;
+        const fillAttrs = color ? `data-color="true" style="width:${(value / max) * 100}%;--bar-color:${color.bg}"` : `style="width:${(value / max) * 100}%"`;
+        return `
+        <div class="bar-row" tabindex="0" data-tip="${escapeHtml(`${tipLabel}: ${fmt(value)} data (${pct(value, total)})`)}">
+          <div class="bar-label">${escapeHtml(displayLabel)}</div>
+          <div class="bar-track"><div class="bar-fill" ${fillAttrs}></div></div>
+          <div class="bar-value">${fmt(value)}</div>
+        </div>
+      `;
+      }).join("") || `<div class="bar-label">Tidak ada data</div>`;
+    }
+
+    function renderDonut() {
+      const data = countBy(state.filtered, "Kloter").sort((a, b) => a[0].localeCompare(b[0]));
+      const total = data.reduce((s, [, v]) => s + v, 0);
+      let cursor = 0;
+      const colors = ["#d6a944", "#6d3f1f", "#256d4a", "#a46a2b"];
+      const stops = data.map(([label, value], i) => {
+        const start = total ? (cursor / total) * 100 : 0;
+        cursor += value;
+        const end = total ? (cursor / total) * 100 : 100;
+        return `${colors[i % colors.length]} ${start}% ${end}%`;
+      });
+      el("kloterDonut").style.background = stops.length ? `conic-gradient(${stops.join(",")})` : "#eee1c2";
+      el("kloterLegend").innerHTML = data.map(([label, value], i) => `
+        <div class="legend-item" data-tip="${escapeHtml(`Kloter ${label}: ${fmt(value)} data dari ${fmt(total)} hasil filter`)}">
+          <span class="swatch" style="background:${colors[i % colors.length]}"></span>
+          <span>Kloter ${escapeHtml(label)}</span>
+          <strong>${fmt(value)} (${pct(value, total)})</strong>
+        </div>
+      `).join("") || `<div class="legend-item"><span></span><span>Tidak ada data</span><strong>0</strong></div>`;
+    }
+
+    function renderRombonganLegend(rows) {
+      const active = new Set(rows.map(r => String(r["Rombongan"])));
+      el("rombonganLegend").innerHTML = Object.entries(ROMBONGAN_COLORS).map(([rom, color]) => `
+        <div class="legend-item" data-tip="${escapeHtml(`Rombongan ${rom}: ${color.name}${active.has(rom) ? "" : " (tidak muncul pada filter aktif)"}`)}" style="${active.has(rom) ? "" : "opacity:.45"}">
+          <span class="swatch" style="background:${color.bg};border:1px solid ${color.border}"></span>
+          <span>Rombongan ${rom}</span>
+          <strong>${escapeHtml(color.name)}</strong>
+        </div>
+      `).join("");
+    }
+
+    function ageBuckets(rows) {
+      const buckets = [["< 30", 0], ["30-44", 0], ["45-59", 0], ["60-64", 0], ["65-74", 0], ["75+", 0]];
+      rows.forEach(r => {
+        const age = Number(r["Umur"]);
+        if (!Number.isFinite(age)) return;
+        if (age < 30) buckets[0][1]++;
+        else if (age < 45) buckets[1][1]++;
+        else if (age < 60) buckets[2][1]++;
+        else if (age < 65) buckets[3][1]++;
+        else if (age < 75) buckets[4][1]++;
+        else buckets[5][1]++;
+      });
+      return buckets;
+    }
+
+    function renderKpis() {
+      const rows = state.filtered;
+      const total = rows.length;
+      const female = rows.filter(r => r["J. Kelamin"] === "P").length;
+      const male = rows.filter(r => r["J. Kelamin"] === "L").length;
+      const ages = rows.map(r => Number(r["Umur"])).filter(Number.isFinite);
+      const avg = ages.length ? ages.reduce((s, n) => s + n, 0) / ages.length : 0;
+      const senior = ages.filter(n => n >= 65).length;
+      const kabCount = new Set(rows.map(r => r["Kab/Kota"])).size;
+      const k28 = rows.filter(r => r["Kloter"] === "28").length;
+      const k30 = rows.filter(r => r["Kloter"] === "30").length;
+
+      el("heroTotal").textContent = fmt(total);
+      el("heroKab").textContent = fmt(kabCount);
+      el("heroK28").textContent = fmt(k28);
+      el("heroK30").textContent = fmt(k30);
+      el("countK28").textContent = fmt(k28);
+      el("countK30").textContent = fmt(k30);
+      el("kpiTotal").textContent = fmt(total);
+      el("kpiTotalSub").textContent = `${fmt(k28)} K28 | ${fmt(k30)} K30`;
+      el("kpiFemale").textContent = fmt(female);
+      el("kpiFemaleSub").textContent = pct(female, total);
+      el("kpiMale").textContent = fmt(male);
+      el("kpiMaleSub").textContent = pct(male, total);
+      el("kpiAge").textContent = avg ? avg.toFixed(1) : "0";
+      el("kpiAgeSub").textContent = ages.length ? `${Math.min(...ages)}-${Math.max(...ages)} tahun` : "Tidak ada umur";
+      el("kpiSenior").textContent = fmt(senior);
+      el("kpiSeniorSub").textContent = pct(senior, ages.length);
+    }
+
+    function renderTable() {
+      const rows = state.filtered;
+      el("tableInfo").textContent = `${fmt(rows.length)} data terfilter`;
+      el("tableBody").innerHTML = rows.slice(0, 160).map(r => `
+        <tr data-tip="${escapeHtml(`${r["Nama"]} | Porsi ${r["No. Porsi"]} | UPG-${r["Kloter"]} | Romb. ${r["Rombongan"]} Regu ${r["Regu Kloter"]} | ${r["Kab/Kota"]}`)}">
+          <td>${escapeHtml(r["Urut"])}</td>
+          <td>${escapeHtml(r["No. Porsi"])}</td>
+          <td><strong>${escapeHtml(r["Nama"])}</strong></td>
+          <td><span class="pill">UPG-${escapeHtml(r["Kloter"])}</span></td>
+          <td><span class="pill rombongan-pill" style="${rombonganStyle(r["Rombongan"])}" data-tip="${escapeHtml(`Rombongan ${r["Rombongan"]}: ${ROMBONGAN_COLORS[String(r["Rombongan"])]?.name || "Standar"}`)}">${escapeHtml(r["Rombongan"])}</span></td>
+          <td>${escapeHtml(r["Regu Kloter"])}</td>
+          <td>${escapeHtml(r["Umur"])}</td>
+          <td>${escapeHtml(r["Status Jemaah"])}</td>
+          <td>${escapeHtml(r["Kab/Kota"])}</td>
+          <td>${escapeHtml(r["J. Kelamin"])}</td>
+        </tr>
+      `).join("");
+    }
+
+    function render() {
+      renderKpis();
+      const kabData = countBy(state.filtered, "Kab/Kota");
+      const statusData = countBy(state.filtered, "Status Jemaah");
+      const rombonganData = countBy(state.filtered, "Rombongan").sort((a, b) => Number(a[0]) - Number(b[0]));
+      const reguData = countBy(state.filtered, "Regu Kloter").sort((a, b) => b[1] - a[1] || Number(a[0]) - Number(b[0]));
+      el("kabCountLabel").textContent = `${fmt(kabData.length)} wilayah`;
+      el("statusCountLabel").textContent = `${fmt(statusData.length)} kategori`;
+      el("rombonganCountLabel").textContent = `${fmt(rombonganData.length)} rombongan`;
+      renderBars("kabBars", kabData);
+      renderBars("statusBars", statusData);
+      renderBars("ageBars", ageBuckets(state.filtered));
+      renderBars("rombonganBars", rombonganData, { colorByRombongan: true });
+      renderBars("reguBars", reguData, { limit: 10 });
+      renderDonut();
+      renderRombonganLegend(state.filtered);
+      renderTable();
+      requestAnimationFrame(activateReveal);
+    }
+
+    function updateCountdowns() {
+      const now = new Date();
+      document.querySelectorAll("[data-countdown]").forEach(card => {
+        const kloter = card.dataset.countdown;
+        const target = COUNTDOWN_TARGETS[kloter];
+        let diff = target - now;
+        const status = card.querySelector("[data-status]");
+        if (diff <= 0) {
+          diff = 0;
+          status.textContent = "Jadwal masuk asrama telah tiba";
+        } else {
+          status.textContent = "Menuju jadwal masuk asrama";
+        }
+        const days = Math.floor(diff / 86400000);
+        diff %= 86400000;
+        const hours = Math.floor(diff / 3600000);
+        diff %= 3600000;
+        const minutes = Math.floor(diff / 60000);
+        diff %= 60000;
+        const seconds = Math.floor(diff / 1000);
+        card.querySelector('[data-unit="days"]').textContent = fmt(days);
+        card.querySelector('[data-unit="hours"]').textContent = String(hours).padStart(2, "0");
+        card.querySelector('[data-unit="minutes"]').textContent = String(minutes).padStart(2, "0");
+        card.querySelector('[data-unit="seconds"]').textContent = String(seconds).padStart(2, "0");
+      });
+    }
+
+    function activateReveal() {
+      const items = document.querySelectorAll(".section, .chart-card, .kpi, .hero-panel");
+      items.forEach((node, index) => {
+        node.classList.add("reveal");
+        node.style.transitionDelay = `${Math.min(index * 45, 420)}ms`;
+      });
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12 });
+      items.forEach(node => observer.observe(node));
+    }
+
+    function exportCsv() {
+      const fields = ["Urut", "No. Porsi", "Nama", "Embarkasi", "Kloter", "Rombongan", "Regu Kloter", "Umur", "No. Visa", "Status Jemaah", "Kab/Kota", "J. Kelamin", "Ket", "Kloter Pra", "Syarikah"];
+      const lines = [fields.join(",")].concat(state.filtered.map(r => fields.map(f => `"${String(r[f] || "").replace(/"/g, '""')}"`).join(",")));
+      const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "jemaah-gorontalo-terfilter.csv";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    async function init() {
+      const texts = await Promise.all(CSV_FILES.map(path => fetch(path).then(r => {
+        if (!r.ok) throw new Error(`Gagal memuat ${path}`);
+        return r.text();
+      })));
+      state.all = texts.flatMap(parseCsv).filter(r => GORONTALO_AREAS.has(r["Kab/Kota"]) && r["No. Porsi"] && r["No. Porsi"] !== "-");
+      state.filtered = [...state.all];
+      fillSelect("kloterFilter", [...new Set(state.all.map(r => r["Kloter"]))].sort());
+      fillSelect("kabFilter", [...new Set(state.all.map(r => r["Kab/Kota"]))].sort());
+      fillSelect("statusFilter", [...new Set(state.all.map(r => r["Status Jemaah"]))].sort());
+      ["search", "kloterFilter", "kabFilter", "statusFilter", "genderFilter"].forEach(id => el(id).addEventListener("input", applyFilters));
+      el("resetBtn").addEventListener("click", () => {
+        ["search", "kloterFilter", "kabFilter", "statusFilter", "genderFilter"].forEach(id => el(id).value = "");
+        applyFilters();
+      });
+      el("exportBtn").addEventListener("click", exportCsv);
+      render();
+      updateCountdowns();
+      setInterval(updateCountdowns, 1000);
+    }
+
+    init().catch(err => {
+      document.body.innerHTML = `<main class="shell"><section class="section"><h1>Data gagal dimuat</h1><p>${escapeHtml(err.message)}</p></section></main>`;
+    });
+  </script>
+</body>
+</html>
